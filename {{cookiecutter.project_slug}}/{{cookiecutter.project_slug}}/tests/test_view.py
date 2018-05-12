@@ -2,7 +2,7 @@
 
 """
 Created on 2018-05-12
-:author: AUTHOR_NAME (AUTHOR_EMAIL@email.com)
+:author: {{cookiecutter.full_name}} ({{cookiecutter.email}})
 """
 
 from pytest import fixture

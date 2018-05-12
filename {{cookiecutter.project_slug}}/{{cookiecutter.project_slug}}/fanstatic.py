@@ -2,7 +2,7 @@
 
 """
 Created on 2018-05-12
-:author: AUTHOR_NAME (AUTHOR_EMAIL@email.com)
+:author: {{cookiecutter.full_name}} ({{cookiecutter.email}})
 """
 
 from __future__ import absolute_import, division, print_function
