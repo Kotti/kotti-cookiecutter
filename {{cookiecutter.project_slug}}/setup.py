@@ -53,7 +53,7 @@ setup(
     ],
     author='Kotti developers',
     author_email='kotti@googlegroups.com',
-    url='https://github.com/GITHUB_USERNAME/{{cookiecutter.project_slug}}',
+    url='https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}',
     keywords='kotti web cms wcms pylons pyramid sqlalchemy bootstrap',
     license="BSD-derived (http://www.repoze.org/LICENSE.txt)",
     packages=find_packages(),

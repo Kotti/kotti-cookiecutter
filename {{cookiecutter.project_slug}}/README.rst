@@ -17,12 +17,12 @@ This is an extension to Kotti that allows to add foo to your site.
 .. |license| image:: https://img.shields.io/pypi/l/{{cookiecutter.project_slug}}.svg?style=flat-square
 .. _license: http://www.repoze.org/LICENSE.txt
 
-.. |build_status_stable| image:: https://img.shields.io/travis/GITHUB_USERNAME/{{cookiecutter.project_slug}}/production.svg?style=flat-square
-.. _build_status_stable: http://travis-ci.org/GITHUB_USERNAME/{{cookiecutter.project_slug}}
+.. |build_status_stable| image:: https://img.shields.io/travis/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}/production.svg?style=flat-square
+.. _build_status_stable: http://travis-ci.org/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}
 
 `Find out more about Kotti`_
 
-Development happens at https://github.com/GITHUB_USERNAME/{{cookiecutter.project_slug}}
+Development happens at https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}
 
 .. _Find out more about Kotti: http://pypi.python.org/pypi/Kotti
 
@@ -51,13 +51,13 @@ Development
 
 |build_status_master|_
 
-.. |build_status_master| image:: https://img.shields.io/travis/GITHUB_USERNAME/{{cookiecutter.project_slug}}/master.svg?style=flat-square
-.. _build_status_master: http://travis-ci.org/GITHUB_USERNAME/{{cookiecutter.project_slug}}
+.. |build_status_master| image:: https://img.shields.io/travis/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}/master.svg?style=flat-square
+.. _build_status_master: http://travis-ci.org/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}
 
 Contributions to {{cookiecutter.project_slug}} are highly welcome.
 Just clone its `Github repository`_ and submit your contributions as pull requests.
 
 .. _alembic: http://pypi.python.org/pypi/alembic
 .. _alembic documentation: https://alembic.readthedocs.io/en/latest/index.html
-.. _tracker: https://github.com/GITHUB_USERNAME/{{cookiecutter.project_slug}}/issues
-.. _Github repository: https://github.com/GITHUB_USERNAME/{{cookiecutter.project_slug}}
+.. _tracker: https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}/issues
+.. _Github repository: https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}
