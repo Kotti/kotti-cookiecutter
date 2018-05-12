@@ -25,7 +25,7 @@ install_requires = [
 setup(
     name='{{cookiecutter.project_slug}}',
     version=version,
-    description="Add on for Kotti",
+    description="{{ cookiecutter.project_short_description }}",
     long_description='\n\n'.join([README, CHANGES]),
     classifiers=[
         'Development Status :: 3 - Alpha',
