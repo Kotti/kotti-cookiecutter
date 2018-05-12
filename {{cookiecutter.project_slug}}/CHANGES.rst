@@ -1,7 +1,7 @@
 History
 =======
 
-0.1 - unreleased
-----------------
+{{cookiecutter.version}} (unreleased)
+------------------
 
 - Create package with ``cookiecutter https://github.com/Kotti/kotti-cookiecutter``.

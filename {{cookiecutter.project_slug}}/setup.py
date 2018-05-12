@@ -14,7 +14,7 @@ try:
 except IOError:
     CHANGES = ''
 
-version = '0.1dev'
+version = '{{cookiecutter.version}}dev'
 
 install_requires = [
     'Kotti>=1.3.0',
