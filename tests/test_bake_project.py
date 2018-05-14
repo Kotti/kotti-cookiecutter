@@ -9,7 +9,10 @@ from cookiecutter.utils import rmtree
 
 @pytest.fixture
 def default_extra_context():
-    return {}
+    extra_context = {
+        'full_name': 'Kotti devel',
+        'email': 'kotti@googlegroups.com'}
+    return extra_context.copy()
 
 
 @contextmanager
@@ -64,8 +67,10 @@ def project_info(result):
     return project_path, project_slug, project_dir
 
 
-def test_fullname_license_file(cookies):
-    with bake_in_temp_dir(cookies) as result:
+def test_fullname_license_file(cookies, default_extra_context):
+    with bake_in_temp_dir(
+            cookies,
+            extra_context=default_extra_context) as result:
         license_file_path = result.project.join('LICENSE.txt')
         assert 'kotti_addon' in license_file_path.read()
 
@@ -82,11 +87,35 @@ def test_fullname_license_file(cookies):
     ('kotti_addon', 'tests', 'test_resources.py',),
     ('kotti_addon', 'tests', 'conftest.py',),
 ])
-def test_date_python_files(cookies, file_path):
-    with bake_in_temp_dir(cookies) as result:
+def test_date_python_files(cookies, file_path, default_extra_context):
+    with bake_in_temp_dir(
+            cookies,
+            extra_context=default_extra_context) as result:
         today_iso = datetime.date.today().isoformat()
         computed_file = result.project.join(*file_path)
         assert today_iso in computed_file.read()
+
+
+@pytest.mark.parametrize('file_path', [
+    ('kotti_addon', 'views', 'view.py'),
+    ('kotti_addon', 'views', 'edit.py'),
+    ('kotti_addon', 'views', '__init__.py'),
+    ('kotti_addon', 'fanstatic.py',),
+    ('kotti_addon', 'resources.py',),
+    ('kotti_addon', '__init__.py',),
+    ('kotti_addon', 'tests', 'test_functional.py',),
+    ('kotti_addon', 'tests', 'test_view.py',),
+    ('kotti_addon', 'tests', 'test_resources.py',),
+    ('kotti_addon', 'tests', 'conftest.py',),
+])
+def test_author_python_files(cookies, file_path, default_extra_context):
+    with bake_in_temp_dir(
+            cookies,
+            extra_context=default_extra_context) as result:
+        computed_file = result.project.join(*file_path)
+        assert "{0} ({1})".format(
+            default_extra_context['full_name'],
+            default_extra_context['email']) in computed_file.read()
 
 
 def test_bake_with_defaults(cookies):
@@ -99,28 +128,15 @@ def test_bake_with_defaults(cookies):
         assert 'setup.py' in found_toplevel_files
         assert 'pytest.ini' in found_toplevel_files
         assert 'tox.ini' in found_toplevel_files
-        assert 'credentials' in found_toplevel_files
-        assert 'testrail.cfg' in found_toplevel_files
-
-        credential_files = [
-            subitem.basename for subitem in
-            [item for item in result.project.visit(
-                'credentials')][0].listdir()]
-        assert 'credentials_template.yml' in credential_files
 
         found_secondlevel_files = [
             subitem.basename for subitem in
-            [item for item in result.project.visit('project_qa')][0].listdir()]
+            [item for item in result.project.visit(
+             'kotti_addon')][0].listdir()]
         assert 'tests' in found_secondlevel_files
         assert '__init__.py' in found_secondlevel_files
-        assert 'config.py' in found_secondlevel_files
-        assert 'pages' in found_secondlevel_files
-        assert 'features' in found_secondlevel_files
-
-        setup_py_path = [f.strpath for f in result.project.listdir()
-                         if f.basename == 'setup.py'][0]
-        with open(setup_py_path) as setup_py_file:
-            assert 'pytest-testrail' in setup_py_file.read()
+        assert 'fanstatic.py' in found_secondlevel_files
+        assert 'resources.py' in found_secondlevel_files
 
 
 def test_bake_and_run_tests(cookies, default_extra_context):
@@ -130,7 +146,6 @@ def test_bake_and_run_tests(cookies, default_extra_context):
             extra_context=extra_context) as result:
         assert result.project.isdir()
         run_inside_dir(
-            'make docker-run SELENIUM_GRID_URL={0}'.format(
-                default_extra_context['selenium_grid_url']),
+            'tox',
             str(result.project)) == 0
         print("test_bake_and_run_tests path", str(result.project))
