@@ -11,15 +11,14 @@ from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy import Unicode
-from zope.interface import implements
+from zope.interface import implementer
 
 from {{cookiecutter.project_slug}} import _
 
 
+@implementer(IDefaultWorkflow)
 class CustomContent(Content):
     """ A custom content type. """
-
-    implements(IDefaultWorkflow)
 
     id = Column(ForeignKey('contents.id'), primary_key=True)
     custom_attribute = Column(Unicode(1000))
