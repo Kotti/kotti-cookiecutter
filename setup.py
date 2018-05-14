@@ -8,6 +8,7 @@ tests_require = [
     'pytest',
     'pytest-cookies',
     'tox',
+    'pipenv',
 ]
 
 docs_require = [
