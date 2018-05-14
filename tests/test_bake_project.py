@@ -56,19 +56,37 @@ def check_output_inside_dir(command, dirpath):
         return subprocess.check_output(shlex.split(command))
 
 
-def test_year_compute_in_license_file(cookies):
-    with bake_in_temp_dir(cookies) as result:
-        license_file_path = result.project.join('LICENSE')
-        now = datetime.datetime.now()
-        assert str(now.year) in license_file_path.read()
-
-
 def project_info(result):
     """Get toplevel dir, project_slug, and project dir from baked cookies"""
     project_path = str(result.project)
     project_slug = os.path.split(project_path)[-1]
     project_dir = os.path.join(project_path, project_slug)
     return project_path, project_slug, project_dir
+
+
+def test_fullname_license_file(cookies):
+    with bake_in_temp_dir(cookies) as result:
+        license_file_path = result.project.join('LICENSE.txt')
+        assert 'kotti_addon' in license_file_path.read()
+
+
+@pytest.mark.parametrize('file_path', [
+    ('kotti_addon', 'views', 'view.py'),
+    ('kotti_addon', 'views', 'edit.py'),
+    ('kotti_addon', 'views', '__init__.py'),
+    ('kotti_addon', 'fanstatic.py',),
+    ('kotti_addon', 'resources.py',),
+    ('kotti_addon', '__init__.py',),
+    ('kotti_addon', 'tests', 'test_functional.py',),
+    ('kotti_addon', 'tests', 'test_view.py',),
+    ('kotti_addon', 'tests', 'test_resources.py',),
+    ('kotti_addon', 'tests', 'conftest.py',),
+])
+def test_date_python_files(cookies, file_path):
+    with bake_in_temp_dir(cookies) as result:
+        today_iso = datetime.date.today().isoformat()
+        computed_file = result.project.join(*file_path)
+        assert today_iso in computed_file.read()
 
 
 def test_bake_with_defaults(cookies):

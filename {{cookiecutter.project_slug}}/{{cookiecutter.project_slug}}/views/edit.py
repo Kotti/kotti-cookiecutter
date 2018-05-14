@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Created on 2018-05-12
+Created on {% now 'local', '%Y-%m-%d' %}
 :author: {{cookiecutter.full_name}} ({{cookiecutter.email}})
 """
 
