@@ -21,7 +21,7 @@ def test_add(webtest, root):
     # submit empty form
     form = resp.forms['deform']
     resp = form.submit('save')
-    assert 'There was a problem' in resp.body
+    assert 'There was a problem' in str(resp.body)
 
     # submit valid form
     form = resp.forms['deform']
@@ -30,7 +30,7 @@ def test_add(webtest, root):
     resp = form.submit('save')
     assert resp.status_code == 302
     resp = resp.follow()
-    assert 'Item was added.' in resp.body
+    assert 'Item was added.' in str(resp.body)
 
 
 @mark.user('admin')
@@ -46,5 +46,5 @@ def test_edit(webtest, root):
     assert form['custom_attribute'].value == u''
     form['custom_attribute'] = u'Bazinga'
     resp = form.submit('save').maybe_follow()
-    assert u'Your changes have been saved.' in resp.body
-    assert u'Bazinga' in resp.body
+    assert u'Your changes have been saved.' in str(resp.body)
+    assert u'Bazinga' in str(resp.body)

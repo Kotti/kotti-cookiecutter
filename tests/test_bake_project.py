@@ -128,6 +128,7 @@ def test_bake_with_defaults(cookies):
         assert 'setup.py' in found_toplevel_files
         assert 'pytest.ini' in found_toplevel_files
         assert 'tox.ini' in found_toplevel_files
+        assert 'MANIFEST.in' in found_toplevel_files
 
         found_secondlevel_files = [
             subitem.basename for subitem in
