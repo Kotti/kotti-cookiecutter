@@ -21,6 +21,13 @@ install_requires = [
     'kotti_tinymce',
 ]
 
+tests_require = [
+    'pytest-cov',
+    'pytest-pep8',
+    'mock',
+    'webtest',
+]
+
 
 setup(
     name='{{cookiecutter.project_slug}}',
@@ -37,14 +44,12 @@ setup(
         'License :: Repoze Public License',
         'Operating System :: POSIX',
         'Operating System :: Unix',
-        # 'Programming Language :: JavaScript',
+        'Programming Language :: JavaScript',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
-        # 'Programming Language :: Python :: 3',
-        # 'Programming Language :: Python :: 3.3',
-        # 'Programming Language :: Python :: 3.4',
-        # 'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Topic :: Internet',
         'Topic :: Internet :: WWW/HTTP',
@@ -67,5 +72,7 @@ setup(
             '{{cookiecutter.project_slug}} = {{cookiecutter.project_slug}}.fanstatic:library',
         ],
     },
-    extras_require={},
+    extras_require={
+        'tests': tests_require,
+    },
 )
